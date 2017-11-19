@@ -1,4 +1,6 @@
-const execa = require('execa');
+#! /usr/bin/env node
+
+const { execSync } = require('child_process');
 const semver = require('semver');
 
 const flags = ['--show-all', '--ejson'];
@@ -6,12 +8,12 @@ const meteorRegistry = 'atmosphere';
 
 module.exports = async ({publishConfig, name}, logger) => {
   // Load package.js info
-  const pkgInfo = JSON.parse(await execa('meteor show', flags));
+  const pkgInfo = JSON.parse(execSync('meteor show --show-all --ejson').toString('utf-8'));
   logger.log('Loaded package.js for package %s', pkgInfo.name);
 
   // Load released package info
   // xxx: use pkgInfo.name - "name" is from package.json (these might not be the same)
-  const { versions = [] } = JSON.parse(await execa('meteor show', [pkgInfo.name, ...flags]));
+  const { versions = [] } = JSON.parse(execSync(`meteor show ${pkgInfo.name} --show-all --ejson`).toString('utf-8'));
   logger.log('Loaded metadata for package %s from %s', pkgInfo.name, meteorRegistry);
 
   // Create sorted array of sematic versions
