@@ -9,7 +9,10 @@
   "scripts": {
     "test": "echo \"Implement tests\"; exit 0",
     "lint": "eslint ./src",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release"
+  },
+  "release": {
+    "verifyConditions": "@semantic-release/github"
   },
   "engines": {
     "node": ">=8"
@@ -29,6 +32,6 @@
     "semver": "^5.4.1"
   },
   "devDependencies": {
-    "semantic-release": "^8.2.0"
+    "semantic-release": "^10.0.1"
   }
 }
