@@ -28,7 +28,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "execa": "^0.8.0",
     "fs-extra": "^4.0.2",
-    "meteor-ci": "^0.3.0",
+    "meteor-ci": "^0.3.1",
     "semver": "^5.4.1"
   },
   "devDependencies": {
