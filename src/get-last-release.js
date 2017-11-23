@@ -1,12 +1,9 @@
-#! /usr/bin/env node
-
 const { execSync } = require('child_process');
 const semver = require('semver');
 
-const flags = ['--show-all', '--ejson'];
 const meteorRegistry = 'atmosphere';
 
-module.exports = async ({publishConfig, name}, logger) => {
+module.exports = async (options, logger) => {
   // Load package.js info
   const pkgInfo = JSON.parse(execSync('meteor show --show-all --ejson').toString('utf-8'));
   logger.log('Loaded package.js for package %s', pkgInfo.name);
@@ -21,7 +18,8 @@ module.exports = async ({publishConfig, name}, logger) => {
     .filter(({name}) => name === pkgInfo.name) // Ensure we are looking at same package
     .map(({ version }) => version) // Only use "version"
     .filter(version => !!semver.valid(version)) // Ensure version is semver
-    .sort(semver.compare); // Sort versions
+    .sort(semver.compare)
+    .reverse(); // Sort versions
 
   const [ version ] = versionList; // Extract latest version
 

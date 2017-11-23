@@ -25,27 +25,15 @@ Package.describe({
 ```json
 {
   "scripts": {
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release"
   },
   "release": {
-    "verifyConditions": [
-      "@semantic-release/travis",
-      "semantic-release-meteor",
-      "@semantic-release/github"
-    ],
+    "verifyConditions": ["semantic-release-meteor", "@semantic-release/github"],
     "getLastRelease": "semantic-release-meteor",
-    "analyzeCommits": "@semantic-release/conventional-changelog",
-    "verifyRelease": [
-      "@semantic-release/lts"
-    ],
-    "generateNotes" : "@semantic-release/conventional-changelog",
-    "publish": [
-      "semantic-release-meteor",
-      "@semantic-release/github"
-    ]
+    "publish": ["semantic-release-meteor", "@semantic-release/github"]
   },
   "devDependencies": {
-    "semantic-release": "x.x.x"
+    "semantic-release": "^10.0.1"
   }
 }
 ```
@@ -53,8 +41,9 @@ Package.describe({
 #### Travis example
 
 Environment variables:
-```
+```bash
   METEOR_TOKEN=""
+  # Optionally set METEOR_KEY
 ```
 *Create token using `$ npx meteor-ci create-token`*
 
@@ -65,7 +54,6 @@ language: node_js
 cache:
   directories:
     - ~/.npm
-    - "node_modules"
 node_js:
   - '8'
 install:
@@ -81,5 +69,11 @@ script:
 jobs:
   include:
     - stage: publish
+      language: node_js
+      node_js: '8'
     - script: npm run semantic-release
+
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
 ```
