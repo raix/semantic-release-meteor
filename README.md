@@ -72,7 +72,6 @@ jobs:
       language: node_js
       node_js: '8'
     - script: npm run semantic-release
-
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
