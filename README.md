@@ -6,8 +6,6 @@
 
 Semantic release plugin for Meteor packages
 
-NOTE: This package is still experimental - `semantic-release` multi plugins are not released
-
 *Note: Semantic release cannot do the initial release of the package*
 
 #### Setup package.js
