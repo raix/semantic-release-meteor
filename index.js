@@ -1,4 +1,3 @@
-const {callbackify} = require('util');
 const verifyMeteor = require('./lib/verify');
 const publishMeteor = require('./lib/publish');
 const getLastReleaseMeteor = require('./lib/get-last-release');
@@ -27,7 +26,7 @@ async function publish (pluginConfig, {pkg, nextRelease: {version}, logger}) {
 }
 
 module.exports = {
-  verifyConditions: callbackify(verifyConditions),
-  getLastRelease: callbackify(getLastRelease),
-  publish: callbackify(publish)
+  verifyConditions: verifyConditions,
+  getLastRelease: getLastRelease,
+  publish: publish
 };
