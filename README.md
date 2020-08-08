@@ -1,3 +1,5 @@
+# DEPRECATION: This package is no longer maintained.
+
 # semantic-release-meteor
 
 [![Build Status](https://travis-ci.org/raix/semantic-release-meteor.svg?branch=master)](https://travis-ci.org/raix/semantic-release-meteor)
